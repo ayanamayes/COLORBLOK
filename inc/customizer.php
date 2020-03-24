@@ -422,9 +422,9 @@ function COLORBLOK_customize_register( $wp_customize ) {
 
 
 
-	foreach ($paletteValuesArr as $p=>&$c){
+	for ($p = 1; $p <=sizeof($paletteValuesArr);  $p++){
 //ADD CB COLOR SETTING
-
+$c =$paletteValuesArr[$p];
 		$cb_set_ = 'cb_block_settings';
 
 			$cb_name1 = 'bc_'.$p;
@@ -509,8 +509,8 @@ function COLORBLOK_customize_register( $wp_customize ) {
 
 		}
 
-
-	$paletteValuesArr = $paletteValuesArr_loaded;
+//global $paletteValuesArr;
+//	$paletteValuesArr = $paletteValuesArr_loaded;
 	set_theme_mod('accent_accessible_colors',$paletteValuesArr_loaded);
 
 	function choice_callback( $control ) {
@@ -528,7 +528,7 @@ function COLORBLOK_customize_register( $wp_customize ) {
 
 	//ADD BLOCK palette SETTING
 	$wp_customize->add_setting( 'cb_palette' , array(
-		'default'     => '0',
+		'default'     => '1',
 		'transport'     => 'refresh',
 		'panel' => 'cb_panel',
 	) );
@@ -543,7 +543,6 @@ function COLORBLOK_customize_register( $wp_customize ) {
 		'settings'   => 'cb_palette',
 		'radios'   =>   get_theme_mod('accent_accessible_colors'),
 	) ) );
-	$wp_customize->get_setting('cb_palette')->transport = 'postMessage';
 	}
 
 
@@ -1030,7 +1029,6 @@ class Post_Radio_Custom_Control extends WP_Customize_Control
                     <div class='platte_select_'>
 
 							<?php
-
 							foreach ($this->radios as $dv => $subdata) :
 
 								?>

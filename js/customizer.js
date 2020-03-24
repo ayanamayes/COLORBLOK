@@ -219,7 +219,7 @@ $.each($pal_array, function(i,v){
 
             wp.customize( 'fc_'+$p, function( value ) {
                 value.bind( function( newval ){
-                    $('.color' + $p).css({'color' : newval});
+                    $colorP.css({'color' : newval});
                 })
             })
 
@@ -274,7 +274,7 @@ $.each($pal_array, function(i,v){
 
 
 
-            }  else { return;}
+            }
         })
 
 
@@ -339,7 +339,6 @@ $.each($pal_array, function(i,v){
         })
     }
 }}
-    else    { }
 
 
 
