@@ -13,8 +13,7 @@ This theme is a work in progress.
 
 TODO's include:
 1. Widgetizing Posts and Pages
-2. Adding Pages as a block option
-3. Modify customizer layout with sub-panels
+2. Modify customizer layout with sub-panels
 
 
 Getting Started

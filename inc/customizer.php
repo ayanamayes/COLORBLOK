@@ -812,11 +812,19 @@ class Post_Dropdown_Custom_Control extends WP_Customize_Control
 	public $type = 'latest_post_dropdown';
 
 	public $post_type = 'post';
+	public $post_type2 = 'page';
 
 	public function render_content() {
 
 		$latest = new WP_Query( array(
 			'post_type'   => $this->post_type,
+			'post_status' => 'publish',
+			'orderby'     => 'date',
+			'order'       => 'DESC'
+		));
+
+		$pages = new WP_Query( array(
+			'post_type'   => $this->post_type2,
 			'post_status' => 'publish',
 			'orderby'     => 'date',
 			'order'       => 'DESC'
@@ -832,6 +840,10 @@ class Post_Dropdown_Custom_Control extends WP_Customize_Control
 
 				while( $latest->have_posts() ) {
 					$latest->the_post();
+					echo "<option " . selected( $this->value(), get_the_ID() ) . " value='" . get_the_ID() . "'>" . the_title( '', '', false ) . "</option>";
+				}
+				while( $pages->have_posts() ) {
+					$pages->the_post();
 					echo "<option " . selected( $this->value(), get_the_ID() ) . " value='" . get_the_ID() . "'>" . the_title( '', '', false ) . "</option>";
 				}
 				?>
