@@ -1,0 +1,15 @@
+.platte_select_ {
+    width: 200px;
+    padding: 3%;
+    border: black solid 1px;
+    margin: 1%;
+    padding-left: 10%;
+}
+.platte_select, .platte_select div, input {
+/*margin: 3%;*/
+     padding: 2%;
+
+ }
+.platte_select, .platte_select_ div {
+    padding: 2%;
+}
