@@ -509,8 +509,6 @@ $c =$paletteValuesArr[$p];
 
 		}
 
-//global $paletteValuesArr;
-//	$paletteValuesArr = $paletteValuesArr_loaded;
 	set_theme_mod('accent_accessible_colors',$paletteValuesArr_loaded);
 
 	function choice_callback( $control ) {
@@ -617,7 +615,6 @@ $c =$paletteValuesArr[$p];
 				'section' => $cb_set,
 				'settings' => $cb_post,
 			)));
-			$wp_customize->get_setting($cb_post)->transport = 'postMessage';
 
 //ADD CB min width SETTING
 			$cb_width = 'cb_block_width'.$i;
@@ -638,7 +635,6 @@ $c =$paletteValuesArr[$p];
 					'max'   => 100,),
 
 			)));
-			$wp_customize->get_setting($cb_width)->transport = 'postMessage';
 
 //ADD CB toggle SETTING
 			$cb_toggle = 'cb_block_toggle'.$i;
@@ -993,7 +989,6 @@ class Post_Radio_Custom_Control extends WP_Customize_Control
 	 */
 	public function enqueue() {
 		wp_enqueue_style( 'cb_style', get_template_directory_uri() . '/css/customize-control-radio.css' );
-	//	wp_enqueue_style( 'cb_script', get_template_directory_uri() . '/js/customizer.js' );
 
 	}
 
@@ -1015,8 +1010,7 @@ class Post_Radio_Custom_Control extends WP_Customize_Control
 		 * @since 1.0
 		 */
 
-		//	if (empty($this->radios))
-			//	return;
+
 
 		$select_ =$this->value();
 		$v_ = (int) $select_;

@@ -255,11 +255,14 @@ class CB_Widget extends WP_Widget {
 			'CB_Widget',
 
 // Widget name will appear in UI
-			__('Slider Widget', 'CB_Widget_domain'),
+			__('Page or Post Widget', 'CB_Widget_domain'),
 
 // Widget description
-			array( 'description' => __( 'Widget for loading showcase posts', 'CB_Widget_domain' ), )
+			array( 'description' => __( 'Widget for loading adding pages or posts to blocks', 'CB_Widget_domain' ), )
 		);
+
+
+
 	}
 
 // Creating widget front-end
@@ -273,29 +276,109 @@ class CB_Widget extends WP_Widget {
 			echo $args['before_title'] . $title . $args['after_title'];
 
 
+		$post = get_post( $instance['ppid_id'] );
+		?>
+        <div id="post-page-<?php echo $instance['ppid_id']; ?>" >
+            <div class="widget-post-page">
+				<?php
+
+				echo '<h2 class="entry-title__"><a href="' . get_post_permalink( $instance['ppid_id'] ) . '" rel="bookmark">'.$post->post_title. '</a>'.'</h2>' ;
+
+
+					?>
+                        <div class="entry-content">	<?php
+
+						echo $post->post_content;
+
+						?>
+                    </div>
+            </div>
+
+	        <?php echo "<div class='img-thumb'>".get_the_post_thumbnail( $post, 100 ).'</div>'; ?>
+
+
+
+
+        </div>
+
+
+
+		<?php
 	}
+
+
 
 // Widget Backend
 	public function form( $instance ) {
+
 		if ( isset( $instance[ 'title' ] ) ) {
 			$title = $instance[ 'title' ];
 		}
 		else {
 			$title = __( 'New title', 'CB_Widget_domain' );
 		}
-// Widget admin form
+
+
+		if ( isset( $instance[ 'ppid_id' ] ) ) {
+			$ppid_id = $instance[ 'ppid_id' ];
+		}
+		else {
+			$ppid_id = __( '', 'CB_Widget_domain' );
+		}
+
+
+		$latest = new WP_Query( array(
+			'post_type'   => 'post',
+			'post_status' => 'publish',
+			'orderby'     => 'date',
+			'order'       => 'DESC'
+		));
+
+		$pages = new WP_Query( array(
+			'post_type'   => 'page',
+			'post_status' => 'publish',
+			'orderby'     => 'date',
+			'order'       => 'DESC'
+		));
+
 		?>
-		<p>
-			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
-		</p>
-		<?php
+
+        <p>
+            <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
+            <input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
+        </p>
+
+
+        <label for="<?php echo $this->get_field_id( 'ppid_id' ); ?>"><?php _e( 'Ad dimensions:', $instance['ppid_id'] ); ?></label>
+
+        <select id="<?php echo $this->get_field_id( 'ppid_id' ); ?>" name="<?php echo $this->get_field_name( 'ppid_id' ); ?>"  >
+			<?php
+			while( $latest->have_posts() ) {
+				$latest->the_post();
+				?>
+                <option <?php selected( $ppid_id, get_the_ID() ); ?> value="<?php echo get_the_ID();?>"><?php echo the_title( '', '', false );?></option>
+				<?php
+			}
+			while( $pages->have_posts() ) {
+				$pages->the_post();
+				?>
+                <option <?php selected( $ppid_id, get_the_ID() ); ?> value="<?php echo get_the_ID();?>"><?php echo the_title( '', '', false );?></option>
+				<?php
+			}
+			?>
+        </select>		<?php
+
+		$instance['ppid_id'] = 2;
 	}
 
 // Updating widget replacing old instances with new
 	public function update( $new_instance, $old_instance ) {
+
 		$instance = array();
 		$instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
+		$instance['ppid_id'] = ( ! empty( $new_instance['ppid_id'] ) ) ? strip_tags( $new_instance['ppid_id'] ) : '';
+
+	//	$instance['ppid_id'] =get_option($this->get_field_id( 'ppid_id' ) );
 		return $instance;
 	}
 } // Class CB_Widget ends here

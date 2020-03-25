@@ -1668,3 +1668,7 @@ aside#secondary {
 	flex:auto;}
 
 #primary.archive-content{ padding: 3%; padding-top: 26vh;}
+
+.widget-post-page {
+	margin-bottom: 4%;
+}
