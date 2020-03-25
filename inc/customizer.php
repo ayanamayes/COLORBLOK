@@ -418,7 +418,6 @@ function COLORBLOK_customize_register( $wp_customize ) {
 			'min'   => 1,
 			'max'   => 10,),
 	) ) );
-	$wp_customize->get_setting('cb_block_count')->transport = 'postMessage';
 
 
 
@@ -602,20 +601,6 @@ $c =$paletteValuesArr[$p];
 
 
 
-//ADD CB POST SETTING
-			$cb_post = 'cb_post'.$i;
-			$wp_customize->add_setting($cb_post, array(
-				'default' => '00',
-				'transport' => 'refresh',
-			));
-
-//ADD CB POST CONTROL
-			$wp_customize->add_control(new Post_Dropdown_Custom_Control($wp_customize, $cb_post, array(
-				'label' => 'Post',
-				'section' => $cb_set,
-				'settings' => $cb_post,
-			)));
-
 //ADD CB min width SETTING
 			$cb_width = 'cb_block_width'.$i;
 			$wp_customize->add_setting($cb_width, array(
@@ -650,7 +635,6 @@ $c =$paletteValuesArr[$p];
 				'settings' => $cb_toggle,
 				'type' => 'checkbox',
 			)));
-			$wp_customize->get_setting($cb_toggle)->transport = 'postMessage';
 			$ccount;
 
 
@@ -799,55 +783,7 @@ $c =$paletteValuesArr[$p];
 add_action( 'customize_register', 'COLORBLOK_customize_register' );
 create_block_color_settings($wp_customize);
 
-/**
- * Classes to create a custom post controls
- */
-class Post_Dropdown_Custom_Control extends WP_Customize_Control
-{
-	public $type = 'latest_post_dropdown';
 
-	public $post_type = 'post';
-	public $post_type2 = 'page';
-
-	public function render_content() {
-
-		$latest = new WP_Query( array(
-			'post_type'   => $this->post_type,
-			'post_status' => 'publish',
-			'orderby'     => 'date',
-			'order'       => 'DESC'
-		));
-
-		$pages = new WP_Query( array(
-			'post_type'   => $this->post_type2,
-			'post_status' => 'publish',
-			'orderby'     => 'date',
-			'order'       => 'DESC'
-		));
-
-		?>
-        <label>
-            <span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
-            <select <?php $this->link(); ?>>
-
-				<?php
-				echo "<option  value='00'>none</option>";
-
-				while( $latest->have_posts() ) {
-					$latest->the_post();
-					echo "<option " . selected( $this->value(), get_the_ID() ) . " value='" . get_the_ID() . "'>" . the_title( '', '', false ) . "</option>";
-				}
-				while( $pages->have_posts() ) {
-					$pages->the_post();
-					echo "<option " . selected( $this->value(), get_the_ID() ) . " value='" . get_the_ID() . "'>" . the_title( '', '', false ) . "</option>";
-				}
-				?>
-            </select>
-        </label>
-		<?php
-		}
-
-}
 
 
 

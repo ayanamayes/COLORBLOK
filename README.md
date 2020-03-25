@@ -12,8 +12,7 @@ COLORBLOK is aimed to strike a balance between too many and too few options avai
 This theme is a work in progress.
 
 TODO's include:
-1. Widgetizing Posts and Pages
-2. Modify customizer layout with sub-panels
+1. Modify customizer layout with sub-panels
 
 
 Getting Started
@@ -36,7 +35,7 @@ General Block Settings:
 Block Level Settings:
 
 1. Block minimum width
-2. Display Block
+2. Display Block Toggle
 3. Block Color
 4. Font Color
 5. Header and Link Font Color
@@ -46,10 +45,11 @@ Block Level Settings:
 How to use:
 ----------
 Head to the "Customize" option from the themes page. Under "Block Settings -> General Block Settings" you can add blocks to the home page and choose color options for them.
-Use the "Block Count" setting to set the number of content blocks to show on the home page. Each block can contain posts and a widget area is added to the "Widgets" panel for each block. 
+Use the "Block Count" setting to set the number of content blocks to show on the home page. Each block can contain widgets. An area is added to the "Widgets" panel for each block. There is a "Posts and Pages" widget included.
 Also under the "General Block Settings" tab, choosing a radio option will load the colors and allow you to modify the Block Background Color, Font Color, Header, and Link Colors and Link Hover Color.                                                                                                                10. Link Hover Color. 
 
 You will find block-level settings for each block set by the "Block Count" setting,
 under each you can select one of the pre-configured palette options or customize colors for each individualy by selecting option 0 under "Select Palette Color Scheme".
 Option "Display Block" toggles block visibility.
 The minimum width setting overrides the default 25% block width.
+
