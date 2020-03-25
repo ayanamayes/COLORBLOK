@@ -341,13 +341,13 @@ class CB_Widget extends WP_Widget {
 			while( $latest->have_posts() ) {
 				$latest->the_post();
 				?>
-                <option <?php selected( $ppid_id, get_the_ID() ); ?> value="<?php echo get_the_ID();?>"><?php echo the_title( '', '', false );?></option>
+                <option <?php selected( $ppid_id, get_the_ID() ); ?> value="<?php echo get_the_ID();?>">Page: <?php echo the_title( '', '', false );?></option>
 				<?php
 			}
 			while( $pages->have_posts() ) {
 				$pages->the_post();
 				?>
-                <option <?php selected( $ppid_id, get_the_ID() ); ?> value="<?php echo get_the_ID();?>"><?php echo the_title( '', '', false );?></option>
+                <option <?php selected( $ppid_id, get_the_ID() ); ?> value="<?php echo get_the_ID();?>">Post: <?php echo the_title( '', '', false );?></option>
 				<?php
 			}
 			?>

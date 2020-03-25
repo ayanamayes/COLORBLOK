@@ -44,7 +44,9 @@ Block Level Settings:
 
 How to use:
 ----------
-Head to the "Customize" option from the themes page. Under "Block Settings -> General Block Settings" you can add blocks to the home page and choose color options for them.
+Head to the "Customize" option from the themes page. 
+Under "Homepage Settings" select "Your latest posts" to produce the block sections.
+Under "Block Settings -> General Block Settings" you can add blocks to the home page and choose color options for them.
 Use the "Block Count" setting to set the number of content blocks to show on the home page. Each block can contain widgets. An area is added to the "Widgets" panel for each block. There is a "Posts and Pages" widget included.
 Also under the "General Block Settings" tab, choosing a radio option will load the colors and allow you to modify the Block Background Color, Font Color, Header, and Link Colors and Link Hover Color.                                                                                                                10. Link Hover Color. 
 
