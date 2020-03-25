@@ -1570,7 +1570,7 @@ article a:visited, article a {
 	justify-content: center;
 }
 .fp.cb_elm, .fp.cbp_elm {
-
+	width: min-content;
 	padding: 2%;
 
 }

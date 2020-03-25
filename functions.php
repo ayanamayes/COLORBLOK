@@ -271,39 +271,24 @@ class CB_Widget extends WP_Widget {
 		$title = apply_filters( 'widget_title', $instance['title'] );
 
 // before and after widget arguments are defined by themes
-		echo $args['before_widget'];
+	//	echo $args['before_widget'];
 		if ( ! empty( $title ) )
 			echo $args['before_title'] . $title . $args['after_title'];
 
 
 		$post = get_post( $instance['ppid_id'] );
 		?>
-        <div id="post-page-<?php echo $instance['ppid_id']; ?>" >
-            <div class="widget-post-page">
-				<?php
+        <div id="post-page-<?php echo $instance['ppid_id']; ?>" class="widget-post-page">
+				<?php echo '<h2 class="entry-title__"><a href="' . get_post_permalink( $instance['ppid_id'] ) . '" rel="bookmark">'.$post->post_title. '</a>'.'</h2>' ; ?>
+                <div class="entry-content">
+                    <?php echo "<div class='img-thumb'>".get_the_post_thumbnail( $post, 100 ).'</div>'; ?>
+	                <?php echo $post->post_content;?>
+                </div>
 
-				echo '<h2 class="entry-title__"><a href="' . get_post_permalink( $instance['ppid_id'] ) . '" rel="bookmark">'.$post->post_title. '</a>'.'</h2>' ;
-
-
-					?>
-                        <div class="entry-content">	<?php
-
-						echo $post->post_content;
-
-						?>
-                    </div>
-            </div>
-
-	        <?php echo "<div class='img-thumb'>".get_the_post_thumbnail( $post, 100 ).'</div>'; ?>
-
-
-
-
-        </div>
-
-
+         </div>
 
 		<?php
+	//	echo $args['after_widget'];
 	}
 
 
@@ -315,7 +300,7 @@ class CB_Widget extends WP_Widget {
 			$title = $instance[ 'title' ];
 		}
 		else {
-			$title = __( 'New title', 'CB_Widget_domain' );
+			$title = __( '', 'CB_Widget_domain' );
 		}
 
 

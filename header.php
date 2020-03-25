@@ -135,7 +135,6 @@
 	        for ($i = 1; $i <= $blocks_count; $i++) {
 
 
-		        $tcb_post = (int) get_theme_mod('cb_post'.$i, 'none');
 		        $pal = get_theme_mod('cb_palette_override'.$i);
 		        $pal1 = get_theme_mod('cb_palette');
 
@@ -148,30 +147,7 @@
 
 
             <div data="<?php echo $pal ?>" id="cb_elm<?php echo $i; ?>" class="fp cb_elm <?php echo ' color'.$pal; ?>">
-
-			    <?php
-                $queried_post = get_post($tcb_post);
-
-                if($queried_post && $tcb_post != '0'){
-                ?>
-                <div id="post-<?php echo $tcb_post;  ?>" class="elm_post"<?php  echo $queried_post->post_class; ?>>
-                    <header class="entry-header__">
-					    <?php
-					    echo '<h2 class="entry-title__"><a href="' . get_post_permalink( $tcb_post ) . '" rel="bookmark">'.$queried_post->post_title. '</a>'.'</h2>' ;
-					    ?>
-                    </header><!-- .entry-header -->
-
-
-
-                    <div class="entry-content__">
-					    <?php
-					    echo $queried_post->post_content;
-					    ?>
-                    </div> <?php echo "<div class='img-thumb'>".get_the_post_thumbnail( $tcb_post, 100 ).'</div>'; ?><!-- .entry-content -->
-
-                </div> 
-		    <?php }
-		     ?><?php if (!function_exists('dynamic_sidebar') || !dynamic_sidebar("CB_Widget_".$i)) : ?>
+<?php if (!function_exists('dynamic_sidebar') || !dynamic_sidebar("CB_Widget_".$i)) : ?>
             <?php endif; ?></div><?php
 
 
