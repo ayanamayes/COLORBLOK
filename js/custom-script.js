@@ -5,20 +5,6 @@
  */
 ( function( $ ) {
 
-
-    /*
-    Spiffy Animations
-*/
-    $(document).ready(function() {
-    $( ".excerpt_" ).mouseover(function() {
-            $( this ).addClass("expanded").stop().animate({height: '100%'}, "slow");
-
-        });
-        $( ".excerpt_" ).mouseout(function() {
-           $( this ).removeClass("expanded").stop().animate({height: '10%'}, "slow");
-
-        });
-
         $lastwidth = 0;
         $('.top').removeClass('top')
 
@@ -32,8 +18,7 @@
             $('.top').css({
                 "padding-top": $('#page-top').height()+80
             });
+        });
 
-        })
-    });
     
 } )( jQuery );

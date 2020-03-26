@@ -203,10 +203,11 @@ add_action( 'wp_enqueue_scripts', 'themebs_enqueue_scripts');
 
 function cus_enqueue_scripts2() {
 
-	wp_enqueue_script( 'customizer', get_template_directory_uri() . '/js/customizer.js', array('jquery'),false,true);
+	wp_enqueue_script('jquery');
+	wp_enqueue_script('jquery-ui-core');
 
-	wp_enqueue_script('jquery-ui', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/jquery-ui.min.js', array('jquery'), '1.8.6');
-	wp_enqueue_script( 'custom-script', get_template_directory_uri() . '/js/custom-script.js', array('jquery', 'jquery-ui'),false,true);
+	wp_enqueue_script( 'custom-script', get_template_directory_uri() . '/js/custom-script.js', array('jquery', 'jquery-ui-core'),false,true);
+	wp_enqueue_script( 'customizer', get_template_directory_uri() . '/js/customizer.js', array('jquery'),false,true);
 
 }
 add_action( 'wp_enqueue_scripts', 'cus_enqueue_scripts2');
@@ -271,7 +272,7 @@ class CB_Widget extends WP_Widget {
 		$title = apply_filters( 'widget_title', $instance['title'] );
 
 // before and after widget arguments are defined by themes
-	//	echo $args['before_widget'];
+		echo $args['before_widget'];
 		if ( ! empty( $title ) )
 			echo $args['before_title'] . $title . $args['after_title'];
 
@@ -288,7 +289,7 @@ class CB_Widget extends WP_Widget {
          </div>
 
 		<?php
-	//	echo $args['after_widget'];
+		echo $args['after_widget'];
 	}
 
 
@@ -401,92 +402,7 @@ function post_options_code( $post ) {
 
 
 
-	$paletteValuesArr = array(
-
-		array
-		(
-			'bc' => '#000000',
-			'fc' => '#ffffff',
-			'lc' => '#ffffff',
-			'lhc' => '#ffffff'
-		),
-
-		array
-		(
-			'bc' => '#1b262c',
-			'fc' => '#ffffff',
-			'lc' => '#ffffff',
-			'lhc' => '#0F2A54',
-		),
-
-		array
-		(
-			'bc' => '#0f4c81',
-			'fc' => '#ffffff',
-			'lc' => '#ffffff',
-			'lhc' => '#0F2A54',
-		),
-
-		array
-		(
-			'bc' => '#ed6663',
-			'fc' => '#0F2A54',
-			'lc' => '#0F2A54',
-			'lhc' => '#ffffff',
-		),
-
-		array
-		(
-			'bc' => '#ffa372',
-			'fc' => '#ffffff',
-			'lc' => '#ffffff',
-			'lhc' => '#0F2A54',
-		),
-
-
-		array
-		(
-			'bc' => '#1b262c',
-			'fc' => '#ffffff',
-			'lc' => '#ffffff',
-			'lhc' => '#0F2A54',
-		),
-
-		array
-		(
-			'bc' => '#1b262c',
-			'fc' => '#ffffff',
-			'lc' => '#ffffff',
-			'lhc' => '#0F2A54',
-		),
-
-		array
-		(
-			'bc' => '#0f4c81',
-			'fc' => '#ffffff',
-			'lc' => '#ffffff',
-			'lhc' => '#0F2A54',
-		),
-
-		array
-		(
-			'bc' => '#ed6663',
-			'fc' => '#0F2A54',
-			'lc' => '#0F2A54',
-			'lhc' => '#ffffff',
-		),
-
-		array
-		(
-			'bc' => '#ffa372',
-			'fc' => '#ffffff',
-			'lc' => '#ffffff',
-			'lhc' => '#0F2A54',
-		)
-
-
-
-	) ;
+	$paletteValuesArr = get_paletteValuesArr();
 	$paletteValues =get_theme_mod('accent_accessible_colors',$paletteValuesArr);
 
 
@@ -590,4 +506,96 @@ function save_post_options1( $post_id ) {
 		}
 
 
+}
+
+
+function get_paletteValuesArr(){
+	$paletteValuesArr = array(
+
+	 			array
+			(
+				'bc' => '#000000',
+				'fc' => '#ffffff',
+				'lc' => '#ffffff',
+				'lhc' => '#ffffff'
+			),
+
+			array
+			(
+				'bc' => '#7c0202',
+				'fc' => '#ffffff',
+				'lc' => '#ffbf00',
+				'lhc' => '#c11717',
+			),
+
+			array
+			(
+				'bc' => '#eeee22',
+				'fc' => '#007753',
+				'lc' => '#007753',
+				'lhc' => '#0a0a0a',
+			),
+
+			array
+			(
+				'bc' => '#10cc32',
+				'fc' => '#ffffff',
+				'lc' => '#ffffff',
+				'lhc' => '#0F2A54',
+			),
+
+			array
+			(
+				'bc' => '#6c25e8',
+				'fc' => '#ffffff',
+				'lc' => '#ffffff',
+				'lhc' => '#0F2A54',
+			),
+
+
+			array
+			(
+				'bc' => '#c91cef',
+				'fc' => '#ffffff',
+				'lc' => '#ffffff',
+				'lhc' => '#0F2A54',
+			),
+
+			array
+			(
+				'bc' => '#1b262c',
+				'fc' => '#ffffff',
+				'lc' => '#ffffff',
+				'lhc' => '#0F2A54',
+			),
+
+			array
+			(
+				'bc' => '#0f4c81',
+				'fc' => '#ffffff',
+				'lc' => '#ffffff',
+				'lhc' => '#0F2A54',
+			),
+
+			array
+			(
+				'bc' => '#000000',
+				'fc' => '#ffffff',
+				'lc' => '#ffffff',
+				'lhc' => '#333333',
+			),
+
+			array
+			(
+				'bc' => '#ffffff',
+				'fc' => '#000000',
+				'lc' => '#999999',
+				'lhc' => '#333333',
+			)
+
+
+
+
+	) ;
+	return $paletteValuesArr;
 }

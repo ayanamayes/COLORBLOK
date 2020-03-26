@@ -68,7 +68,14 @@
     <?php
     endwhile;
     endif;
-	    ?> </style>
+	    ?>
+    @media (max-width: 800px) {
+
+        .cb_elm, .cbp_elm {
+            min-width: 100%;
+        }}
+
+        </style>
     <?php } ?>
 
 </head>

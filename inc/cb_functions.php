@@ -21,7 +21,7 @@ function cd_customizer_css()
 
 	 ?>
 
-        #site-navigation a, #page-bot a, ul.sub-menu, #site-navigation{
+        #site-navigation a, #page-bot a, ul.sub-menu, #site-navigation, .breadcrumb .active{
             color: <?php echo get_theme_mod('HFLC'); ?>;
             background-color: <?php echo get_theme_mod('HFBKG'); ?>;
         }
